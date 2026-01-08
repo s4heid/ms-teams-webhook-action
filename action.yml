@@ -1,0 +1,86 @@
+name: 'MS Teams Webhook Notification'
+description: 'Send customizable CI/CD notifications to MS Teams via authenticated Power Automate webhook'
+author: 'Your Organization'
+
+branding:
+  icon: 'send'
+  color: 'purple'
+
+inputs:
+  client_id:
+    description: 'Azure AD application client ID'
+    required: true
+
+  client_secret:
+    description: 'Azure AD application client secret'
+    required: true
+
+  tenant_id:
+    description: 'Azure AD tenant ID'
+    required: true
+
+  webhook_url:
+    description: 'Power Automate webhook URL'
+    required: true
+
+  body:
+    description: 'JSON body for the notification (simple message or Adaptive Card)'
+    required: false
+
+  status:
+    description: 'Build status: success, failure, or cancelled'
+    required: false
+
+  title:
+    description: 'Notification title'
+    required: false
+
+  summary:
+    description: 'Summary text or error description'
+    required: false
+
+  repository:
+    description: 'Repository name in owner/repo format'
+    required: false
+
+  run_url:
+    description: 'URL to the GitHub Actions workflow run'
+    required: false
+
+  dry_run:
+    description: 'Validate inputs and log payload without sending (for PR testing)'
+    required: false
+    default: 'false'
+
+  fail_on_error:
+    description: 'Fail the workflow step if notification fails'
+    required: false
+    default: 'false'
+
+  timeout:
+    description: 'Request timeout in milliseconds'
+    required: false
+    default: '10000'
+
+outputs:
+  notification_sent:
+    description: 'Whether the notification was successfully sent (true/false)'
+
+  response_code:
+    description: 'HTTP status code from the webhook response'
+
+  retry_count:
+    description: 'Number of retry attempts made (0-3)'
+
+  duration_ms:
+    description: 'Total execution time in milliseconds'
+
+  error_message:
+    description: 'Error message if notification failed'
+
+  skip_reason:
+    description: 'Reason for skipping: duplicate, dry_run, or empty if sent'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
