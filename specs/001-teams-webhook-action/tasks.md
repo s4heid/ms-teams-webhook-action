@@ -19,12 +19,12 @@
 
 **Purpose**: Project initialization using `actions/typescript-action` template
 
-- [ ] T001 Create project structure based on actions/typescript-action template at repository root
-- [ ] T002 Configure package.json with dependencies: @actions/core, @actions/github, @actions/http-client
-- [ ] T003 [P] Configure tsconfig.json for ESM output targeting Node.js 20.x
-- [ ] T004 [P] Configure Jest with ts-jest in ESM mode in jest.config.js
-- [ ] T005 [P] Configure ESLint and Prettier per template defaults
-- [ ] T006 [P] Create action.yml from contracts/action-schema.yml schema
+- [x] T001 Create project structure based on actions/typescript-action template at repository root
+- [x] T002 Configure package.json with dependencies: @actions/core, @actions/github, @actions/http-client
+- [x] T003 [P] Configure tsconfig.json for ESM output targeting Node.js 20.x
+- [x] T004 [P] Configure Jest with ts-jest in ESM mode in jest.config.js
+- [x] T005 [P] Configure ESLint and Prettier per template defaults
+- [x] T006 [P] Create action.yml from contracts/action-schema.yml schema
 
 ---
 
@@ -34,15 +34,15 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T007 Create TypeScript interfaces from data-model.md in src/types.ts
-- [ ] T008 [P] Implement input validation logic for required fields in src/validate.ts
-- [ ] T009 [P] Implement URL validation (HTTPS requirement) in src/validate.ts
-- [ ] T010 [P] Implement JSON body validation in src/validate.ts
-- [ ] T011 Create @actions/core mock for testing in **fixtures**/core.ts
-- [ ] T012 [P] Create @actions/http-client mock for testing in **fixtures**/http-client.ts
-- [ ] T013 [P] Create validation unit tests in **tests**/validate.test.ts
-- [ ] T014 Create action entrypoint that wraps main in src/index.ts
-- [ ] T015 Create main.ts shell with run() function signature in src/main.ts
+- [x] T007 Create TypeScript interfaces from data-model.md in src/types.ts
+- [x] T008 [P] Implement input validation logic for required fields in src/validate.ts
+- [x] T009 [P] Implement URL validation (HTTPS requirement) in src/validate.ts
+- [x] T010 [P] Implement JSON body validation in src/validate.ts
+- [x] T011 Create @actions/core mock for testing in **fixtures**/core.ts
+- [x] T012 [P] Create @actions/http-client mock for testing in **fixtures**/http-client.ts
+- [x] T013 [P] Create validation unit tests in **tests**/validate.test.ts
+- [x] T014 Create action entrypoint that wraps main in src/index.ts
+- [x] T015 Create main.ts shell with run() function signature in src/main.ts
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -58,19 +58,19 @@
 
 > **Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T016 [P] [US1] Create auth service unit tests for token acquisition in **tests**/auth.test.ts
-- [ ] T017 [P] [US1] Create notify service unit tests for webhook POST in **tests**/notify.test.ts
-- [ ] T018 [P] [US1] Create main integration tests for successful notification flow in **tests**/main.test.ts
+- [x] T016 [P] [US1] Create auth service unit tests for token acquisition in **tests**/auth.test.ts
+- [x] T017 [P] [US1] Create notify service unit tests for webhook POST in **tests**/notify.test.ts
+- [x] T018 [P] [US1] Create main integration tests for successful notification flow in **tests**/main.test.ts
 
 ### Implementation for User Story 1
 
-- [ ] T019 [US1] Implement OAuth2 token acquisition via POST to Microsoft endpoint in src/auth.ts
-- [ ] T020 [US1] Implement token response parsing and error handling in src/auth.ts
-- [ ] T021 [US1] Implement notification POST with Bearer token header in src/notify.ts
-- [ ] T022 [US1] Implement HTTP 202 success handling in src/notify.ts
-- [ ] T023 [US1] Wire auth and notify services into main run() function in src/main.ts
-- [ ] T024 [US1] Implement structured outputs (notification_sent, response_code, duration_ms) in src/main.ts
-- [ ] T025 [US1] Add secret masking for client_secret and access_token in src/main.ts
+- [x] T019 [US1] Implement OAuth2 token acquisition via POST to Microsoft endpoint in src/auth.ts
+- [x] T020 [US1] Implement token response parsing and error handling in src/auth.ts
+- [x] T021 [US1] Implement notification POST with Bearer token header in src/notify.ts
+- [x] T022 [US1] Implement HTTP 202 success handling in src/notify.ts
+- [x] T023 [US1] Wire auth and notify services into main run() function in src/main.ts
+- [x] T024 [US1] Implement structured outputs (notification_sent, response_code, duration_ms) in src/main.ts
+- [x] T025 [US1] Add secret masking for client_secret and access_token in src/main.ts
 
 **Checkpoint**: User Story 1 is fully functional - can send basic notifications to Teams
 
@@ -84,16 +84,16 @@
 
 ### Tests for User Story 2
 
-- [ ] T026 [P] [US2] Create auth error handling tests for invalid_client in **tests**/auth.test.ts
-- [ ] T027 [P] [US2] Create auth error handling tests for tenant_not_found in **tests**/auth.test.ts
-- [ ] T028 [P] [US2] Create auth error handling tests for invalid_grant in **tests**/auth.test.ts
+- [x] T026 [P] [US2] Create auth error handling tests for invalid_client in **tests**/auth.test.ts
+- [x] T027 [P] [US2] Create auth error handling tests for tenant_not_found in **tests**/auth.test.ts
+- [x] T028 [P] [US2] Create auth error handling tests for invalid_grant in **tests**/auth.test.ts
 
 ### Implementation for User Story 2
 
-- [ ] T029 [US2] Parse Microsoft error response format (error, error_description) in src/auth.ts
-- [ ] T030 [US2] Map error codes to actionable messages per spec acceptance scenarios in src/auth.ts
-- [ ] T031 [US2] Implement error_message output population in src/main.ts
-- [ ] T032 [US2] Ensure secrets are never logged in error messages in src/auth.ts
+- [x] T029 [US2] Parse Microsoft error response format (error, error_description) in src/auth.ts
+- [x] T030 [US2] Map error codes to actionable messages per spec acceptance scenarios in src/auth.ts
+- [x] T031 [US2] Implement error_message output population in src/main.ts
+- [x] T032 [US2] Ensure secrets are never logged in error messages in src/auth.ts
 
 **Checkpoint**: User Stories 1 AND 2 are independently functional - MVP complete
 
@@ -107,19 +107,19 @@
 
 ### Tests for User Story 3
 
-- [ ] T033 [P] [US3] Create payload construction tests for success status in **tests**/payload.test.ts
-- [ ] T034 [P] [US3] Create payload construction tests for failure status in **tests**/payload.test.ts
-- [ ] T035 [P] [US3] Create payload construction tests for body precedence in **tests**/payload.test.ts
+- [x] T033 [P] [US3] Create payload construction tests for success status in **tests**/payload.test.ts
+- [x] T034 [P] [US3] Create payload construction tests for failure status in **tests**/payload.test.ts
+- [x] T035 [P] [US3] Create payload construction tests for body precedence in **tests**/payload.test.ts
 
 ### Implementation for User Story 3
 
-- [ ] T036 [US3] Create payload builder module structure in src/payload.ts
-- [ ] T037 [US3] Implement Adaptive Card generation for success status in src/payload.ts
-- [ ] T038 [US3] Implement Adaptive Card generation for failure status in src/payload.ts
-- [ ] T039 [US3] Implement Adaptive Card generation for cancelled status in src/payload.ts
-- [ ] T040 [US3] Implement body vs convenience parameter precedence logic in src/payload.ts
-- [ ] T041 [US3] Add warning log when both body and convenience params provided in src/payload.ts
-- [ ] T042 [US3] Wire payload builder into main flow in src/main.ts
+- [x] T036 [US3] Create payload builder module structure in src/payload.ts
+- [x] T037 [US3] Implement Adaptive Card generation for success status in src/payload.ts
+- [x] T038 [US3] Implement Adaptive Card generation for failure status in src/payload.ts
+- [x] T039 [US3] Implement Adaptive Card generation for cancelled status in src/payload.ts
+- [x] T040 [US3] Implement body vs convenience parameter precedence logic in src/payload.ts
+- [x] T041 [US3] Add warning log when both body and convenience params provided in src/payload.ts
+- [x] T042 [US3] Wire payload builder into main flow in src/main.ts
 
 **Checkpoint**: User Story 3 complete - convenience parameters working
 
@@ -133,18 +133,18 @@
 
 ### Tests for User Story 4
 
-- [ ] T043 [P] [US4] Create retry logic tests for success after failure in **tests**/retry.test.ts
-- [ ] T044 [P] [US4] Create retry logic tests for max retries exhausted in **tests**/retry.test.ts
-- [ ] T045 [P] [US4] Create retry logic tests for fail_on_error behavior in **tests**/retry.test.ts
+- [x] T043 [P] [US4] Create retry logic tests for success after failure in **tests**/retry.test.ts
+- [x] T044 [P] [US4] Create retry logic tests for max retries exhausted in **tests**/retry.test.ts
+- [x] T045 [P] [US4] Create retry logic tests for fail_on_error behavior in **tests**/retry.test.ts
 
 ### Implementation for User Story 4
 
-- [ ] T046 [US4] Implement exponential backoff utility (1s→2s→4s with jitter) in src/retry.ts
-- [ ] T047 [US4] Implement retry wrapper for HTTP operations in src/retry.ts
-- [ ] T048 [US4] Implement retry_count output tracking in src/retry.ts
-- [ ] T049 [US4] Wire retry logic into notify service in src/notify.ts
-- [ ] T050 [US4] Implement fail_on_error flag handling (default: false) in src/main.ts
-- [ ] T051 [US4] Implement Retry-After header respect for 429 responses in src/retry.ts
+- [x] T046 [US4] Implement exponential backoff utility (1s→2s→4s with jitter) in src/retry.ts
+- [x] T047 [US4] Implement retry wrapper for HTTP operations in src/retry.ts
+- [x] T048 [US4] Implement retry_count output tracking in src/retry.ts
+- [x] T049 [US4] Wire retry logic into notify service in src/notify.ts
+- [x] T050 [US4] Implement fail_on_error flag handling (default: false) in src/main.ts
+- [x] T051 [US4] Implement Retry-After header respect for 429 responses in src/retry.ts
 
 **Checkpoint**: User Story 4 complete - retry logic working
 
@@ -158,16 +158,16 @@
 
 ### Tests for User Story 5
 
-- [ ] T052 [P] [US5] Create dry-run tests for valid inputs in **tests**/main.test.ts
-- [ ] T053 [P] [US5] Create dry-run tests for invalid body detection in **tests**/main.test.ts
-- [ ] T054 [P] [US5] Create dry-run tests for secret redaction in logs in **tests**/main.test.ts
+- [x] T052 [P] [US5] Create dry-run tests for valid inputs in **tests**/main.test.ts
+- [x] T053 [P] [US5] Create dry-run tests for invalid body detection in **tests**/main.test.ts
+- [x] T054 [P] [US5] Create dry-run tests for secret redaction in logs in **tests**/main.test.ts
 
 ### Implementation for User Story 5
 
-- [ ] T055 [US5] Implement dry_run mode bypass of HTTP calls in src/main.ts
-- [ ] T056 [US5] Implement payload logging with secret redaction in src/main.ts
-- [ ] T057 [US5] Implement skip_reason: dry_run output in src/main.ts
-- [ ] T058 [US5] Ensure validation runs before dry-run log in src/main.ts
+- [x] T055 [US5] Implement dry_run mode bypass of HTTP calls in src/main.ts
+- [x] T056 [US5] Implement payload logging with secret redaction in src/main.ts
+- [x] T057 [US5] Implement skip_reason: dry_run output in src/main.ts
+- [x] T058 [US5] Ensure validation runs before dry-run log in src/main.ts
 
 **Checkpoint**: User Story 5 complete - dry-run mode working
 
@@ -199,14 +199,14 @@
 
 **Purpose**: Final improvements affecting multiple user stories
 
-- [ ] T065 [P] Create README.md with usage examples from quickstart.md
-- [ ] T066 [P] Add JSDoc comments to all public functions in src/*.ts
-- [ ] T067 Run Rollup build and verify dist/index.js output
-- [ ] T068 [P] Create .github/workflows/test.yml for CI (npm test)
-- [ ] T069 [P] Create .github/workflows/release.yml for automated releases
+- [x] T065 [P] Create README.md with usage examples from quickstart.md
+- [x] T066 [P] Add JSDoc comments to all public functions in src/*.ts
+- [x] T067 Run Rollup build and verify dist/index.js output
+- [x] T068 [P] Create .github/workflows/test.yml for CI (npm test)
+- [x] T069 [P] Create .github/workflows/release.yml for automated releases
 - [ ] T070 Run quickstart.md examples as smoke tests
-- [ ] T071 Final security review: grep for secret leakage in all source files
-- [ ] T072 Verify all constitution principles are satisfied
+- [x] T071 Final security review: grep for secret leakage in all source files
+- [x] T072 Verify all constitution principles are satisfied
 
 ---
 
