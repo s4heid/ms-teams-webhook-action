@@ -10,7 +10,8 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  test-typescript:
+    name: TypeScript Tests
     runs-on: ubuntu-latest
 
     steps:
