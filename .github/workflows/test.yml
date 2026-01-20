@@ -15,12 +15,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version-file: .node-version
           cache: 'npm'
 
       - name: Install dependencies
@@ -43,3 +43,51 @@ jobs:
           fi
           echo "Build successful: dist/index.js created"
           ls -la dist/
+
+  test-action:
+    name: GitHub Actions Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+          cache: 'npm'
+
+      - name: Install dependencies
+        id: npm-ci
+        run: npm ci
+
+      - name: Build
+        id: npm-build
+        run: npm run build
+
+      - name: Test Local Action (Dry Run)
+        id: test-action
+        uses: ./
+        with:
+          client_id: 'test-client-id'
+          client_secret: 'test-client-secret'
+          tenant_id: 'test-tenant-id'
+          webhook_url: 'https://contoso.com/webhook'
+          status: 'success'
+          title: 'CI Test Notification'
+          summary: 'Testing the action in dry run mode'
+          repository: ${{ github.repository }}
+          run_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          dry_run: 'true'
+
+      - name: Print Outputs
+        id: output
+        run: |
+          echo "notification_sent: ${{ steps.test-action.outputs.notification_sent }}"
+          echo "response_code: ${{ steps.test-action.outputs.response_code }}"
+          echo "retry_count: ${{ steps.test-action.outputs.retry_count }}"
+          echo "duration_ms: ${{ steps.test-action.outputs.duration_ms }}"
+          echo "skip_reason: ${{ steps.test-action.outputs.skip_reason }}"
