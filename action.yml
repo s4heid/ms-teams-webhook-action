@@ -82,5 +82,5 @@ outputs:
     description: 'Reason for skipping: duplicate, dry_run, or empty if sent'
 
 runs:
-  using: 'node20'
+  using: 'node24'
   main: 'dist/index.js'
