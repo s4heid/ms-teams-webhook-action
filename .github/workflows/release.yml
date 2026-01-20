@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*.*.*'
 
 permissions:
   contents: write
@@ -30,6 +30,19 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Update major version tag
+        run: |
+          # Extract the major version from the tag (e.g., v1.2.3 -> v1)
+          TAG=${GITHUB_REF#refs/tags/}
+          MAJOR_VERSION=$(echo $TAG | cut -d. -f1)
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Use ^{} to dereference the tag to its underlying commit
+          git tag -fa $MAJOR_VERSION -m "Update $MAJOR_VERSION tag to $TAG" $TAG^{}
+          git push origin $MAJOR_VERSION --force
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
