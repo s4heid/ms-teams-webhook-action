@@ -1,6 +1,6 @@
 name: 'MS Teams Webhook Notification'
 description: 'Send customizable CI/CD notifications to MS Teams via authenticated Power Automate webhook'
-author: 'Your Organization'
+author: 's4heid'
 
 branding:
   icon: 'send'
