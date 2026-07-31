@@ -24,10 +24,7 @@ function getInputs(): ActionInputs {
     // Optional message inputs
     body: core.getInput('body') || undefined,
     status: (core.getInput('status') || undefined) as
-      | 'success'
-      | 'failure'
-      | 'cancelled'
-      | undefined,
+      'success' | 'failure' | 'cancelled' | undefined,
     title: core.getInput('title') || undefined,
     summary: core.getInput('summary') || undefined,
     repository: core.getInput('repository') || undefined,
@@ -80,13 +77,15 @@ export async function run(): Promise<void> {
 
     if (inputs.dry_run) {
       core.info('Dry-run mode enabled - skipping HTTP transmission')
-      
+
       const payloadResult = buildPayload(inputs)
       if (payloadResult.warning) {
         core.warning(payloadResult.warning)
       }
-      core.info(`Payload (dry-run): ${JSON.stringify(payloadResult.payload, null, 2)}`)
-      
+      core.info(
+        `Payload (dry-run): ${JSON.stringify(payloadResult.payload, null, 2)}`
+      )
+
       const durationMs = Date.now() - startTime
       setOutputs({
         notification_sent: 'false',
@@ -105,7 +104,7 @@ export async function run(): Promise<void> {
       clientSecret: inputs.client_secret,
       tenantId: inputs.tenant_id,
     })
-    
+
     core.setSecret(authResult.accessToken)
 
     const payloadResult = buildPayload(inputs)
@@ -133,7 +132,9 @@ export async function run(): Promise<void> {
         error_message: '',
         skip_reason: '',
       })
-      core.info(`Notification sent successfully (HTTP ${notifyResult.statusCode})`)
+      core.info(
+        `Notification sent successfully (HTTP ${notifyResult.statusCode})`
+      )
     } else {
       const errorMessage = notifyResult.error?.message ?? 'Unknown error'
       setOutputs({
@@ -153,8 +154,7 @@ export async function run(): Promise<void> {
     }
   } catch (error) {
     const durationMs = Date.now() - startTime
-    const errorMessage =
-      error instanceof Error ? error.message : String(error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
 
     setOutputs({
       notification_sent: 'false',

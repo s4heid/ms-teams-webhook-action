@@ -161,7 +161,10 @@ export async function withRetry<T>(
       }
 
       let delayMs: number
-      if (retryableError.retryAfter !== undefined && retryableError.retryAfter > 0) {
+      if (
+        retryableError.retryAfter !== undefined &&
+        retryableError.retryAfter > 0
+      ) {
         delayMs = retryableError.retryAfter * 1000 // Convert seconds to ms
       } else {
         delayMs = calculateBackoffDelay(attempt, options)
@@ -189,5 +192,5 @@ export async function withRetry<T>(
  * @param ms - Duration in milliseconds
  */
 function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+  return new Promise(resolve => setTimeout(resolve, ms))
 }

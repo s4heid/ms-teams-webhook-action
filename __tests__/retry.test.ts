@@ -3,7 +3,14 @@
  * Tests for User Story 4 - Retry on Transient Network Failures
  */
 
-import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals'
+import {
+  describe,
+  it,
+  expect,
+  jest,
+  beforeEach,
+  afterEach,
+} from '@jest/globals'
 import {
   withRetry,
   calculateBackoffDelay,
@@ -32,10 +39,12 @@ describe('calculateBackoffDelay', () => {
     const options = { baseDelayMs: 1000, maxDelayMs: 10000, jitterFactor: 0.1 }
 
     // Run multiple times to ensure jitter is applied
-    const delays = Array.from({ length: 10 }, () => calculateBackoffDelay(0, options))
+    const delays = Array.from({ length: 10 }, () =>
+      calculateBackoffDelay(0, options)
+    )
 
     // With jitter, all delays should be between 900ms and 1100ms (±10%)
-    delays.forEach((delay) => {
+    delays.forEach(delay => {
       expect(delay).toBeGreaterThanOrEqual(900)
       expect(delay).toBeLessThanOrEqual(1100)
     })

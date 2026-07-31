@@ -58,9 +58,7 @@ export interface AdaptiveCard {
  * Adaptive Card elements we generate
  */
 export type AdaptiveCardElement =
-  | TextBlockElement
-  | FactSetElement
-  | ContainerElement
+  TextBlockElement | FactSetElement | ContainerElement
 
 interface TextBlockElement {
   type: 'TextBlock'

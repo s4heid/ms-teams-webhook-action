@@ -3,7 +3,14 @@
  * Tests webhook POST delivery.
  */
 
-import { describe, it, expect, jest, beforeEach, afterEach } from '@jest/globals'
+import {
+  describe,
+  it,
+  expect,
+  jest,
+  beforeEach,
+  afterEach,
+} from '@jest/globals'
 import { sendNotification, sendNotificationWithRetry } from '../src/notify.js'
 import type { IHttpClient, HttpClientFactory } from '../src/notify.js'
 
@@ -31,7 +38,9 @@ describe('sendNotification', () => {
         readBody: async () => '',
       })
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const result = await sendNotification(validParams, factory)
 
       expect(result.success).toBe(true)
@@ -44,7 +53,11 @@ describe('sendNotification', () => {
       let capturedData = ''
       let capturedHeaders: Record<string, string> = {}
 
-      const mockPost = async (url: string, data: string, headers: Record<string, string>) => {
+      const mockPost = async (
+        url: string,
+        data: string,
+        headers: Record<string, string>
+      ) => {
         capturedUrl = url
         capturedData = data
         capturedHeaders = headers
@@ -54,12 +67,16 @@ describe('sendNotification', () => {
         }
       }
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       await sendNotification(validParams, factory)
 
       expect(capturedUrl).toBe(validParams.webhookUrl)
       expect(capturedData).toBe(JSON.stringify(validParams.payload))
-      expect(capturedHeaders['Authorization']).toBe(`Bearer ${validParams.accessToken}`)
+      expect(capturedHeaders['Authorization']).toBe(
+        `Bearer ${validParams.accessToken}`
+      )
       expect(capturedHeaders['Content-Type']).toBe('application/json')
     })
 
@@ -69,7 +86,9 @@ describe('sendNotification', () => {
         readBody: async () => '',
       })
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const result = await sendNotification(validParams, factory)
 
       expect(result.durationMs).toBeGreaterThanOrEqual(0)
@@ -82,7 +101,9 @@ describe('sendNotification', () => {
         readBody: async () => '',
       })
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const result = await sendNotification(validParams, factory)
 
       expect(result.success).toBe(true)
@@ -97,7 +118,9 @@ describe('sendNotification', () => {
         readBody: async () => 'Unauthorized',
       })
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const result = await sendNotification(validParams, factory)
 
       expect(result.success).toBe(false)
@@ -111,7 +134,9 @@ describe('sendNotification', () => {
         readBody: async () => 'Internal Server Error',
       })
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const result = await sendNotification(validParams, factory)
 
       expect(result.success).toBe(false)
@@ -124,7 +149,9 @@ describe('sendNotification', () => {
         throw new Error('ECONNREFUSED')
       }
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const result = await sendNotification(validParams, factory)
 
       expect(result.success).toBe(false)
@@ -137,7 +164,9 @@ describe('sendNotification', () => {
         throw new Error('socket timeout')
       }
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const result = await sendNotification(validParams, factory)
 
       expect(result.success).toBe(false)
@@ -180,7 +209,9 @@ describe('sendNotificationWithRetry', () => {
         }
       }
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const promise = sendNotificationWithRetry(
         { ...validParams, retryOptions: { baseDelayMs: 100, jitterFactor: 0 } },
         factory
@@ -210,7 +241,9 @@ describe('sendNotificationWithRetry', () => {
         }
       }
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const promise = sendNotificationWithRetry(
         { ...validParams, retryOptions: { baseDelayMs: 50, jitterFactor: 0 } },
         factory
@@ -231,7 +264,9 @@ describe('sendNotificationWithRetry', () => {
         readBody: async () => 'Unauthorized',
       })
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const result = await sendNotificationWithRetry(validParams, factory)
 
       expect(result.success).toBe(false)
@@ -244,7 +279,9 @@ describe('sendNotificationWithRetry', () => {
         readBody: async () => 'Bad Request',
       })
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const result = await sendNotificationWithRetry(validParams, factory)
 
       expect(result.success).toBe(false)
@@ -259,7 +296,9 @@ describe('sendNotificationWithRetry', () => {
         readBody: async () => '',
       })
 
-      const factory = createMockHttpClientFactory(mockPost as IHttpClient['post'])
+      const factory = createMockHttpClientFactory(
+        mockPost as IHttpClient['post']
+      )
       const result = await sendNotificationWithRetry(validParams, factory)
 
       expect(result.success).toBe(true)

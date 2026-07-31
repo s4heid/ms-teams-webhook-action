@@ -88,7 +88,9 @@ describe('buildPayload', () => {
 
       // Find TextBlock with title
       const titleBlock = body.find(
-        (el) => el.type === 'TextBlock' && (el.text as string)?.includes('Build Complete')
+        el =>
+          el.type === 'TextBlock' &&
+          (el.text as string)?.includes('Build Complete')
       )
       expect(titleBlock).toBeDefined()
     })
@@ -103,7 +105,7 @@ describe('buildPayload', () => {
       const payload = result.payload as Record<string, unknown>
       expect(payload.actions).toBeDefined()
       const actions = payload.actions as Array<Record<string, unknown>>
-      expect(actions.some((a) => a.type === 'Action.OpenUrl')).toBe(true)
+      expect(actions.some(a => a.type === 'Action.OpenUrl')).toBe(true)
     })
   })
 
@@ -136,8 +138,9 @@ describe('buildPayload', () => {
 
       // Should contain summary text
       const hasSummary = body.some(
-        (el) =>
-          el.type === 'TextBlock' && (el.text as string)?.includes('3 tests failed')
+        el =>
+          el.type === 'TextBlock' &&
+          (el.text as string)?.includes('3 tests failed')
       )
       expect(hasSummary).toBe(true)
     })
@@ -169,15 +172,15 @@ describe('buildPayload', () => {
       const body = payload.body as Array<Record<string, unknown>>
 
       // Find FactSet with repository
-      const factSet = body.find((el) => el.type === 'FactSet') as
+      const factSet = body.find(el => el.type === 'FactSet') as
         | { type: string; facts: Array<{ title: string; value: string }> }
         | undefined
       expect(factSet).toBeDefined()
 
       const facts = factSet!.facts
-      expect(facts.some((f) => f.title === 'Repository' && f.value === 'myorg/myrepo')).toBe(
-        true
-      )
+      expect(
+        facts.some(f => f.title === 'Repository' && f.value === 'myorg/myrepo')
+      ).toBe(true)
     })
   })
 
@@ -209,7 +212,9 @@ describe('buildAdaptiveCard', () => {
       title: 'Test',
     })
 
-    expect(card.$schema).toBe('http://adaptivecards.io/schemas/adaptive-card.json')
+    expect(card.$schema).toBe(
+      'http://adaptivecards.io/schemas/adaptive-card.json'
+    )
     expect(card.type).toBe('AdaptiveCard')
     expect(card.version).toBe('1.5')
   })

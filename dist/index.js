@@ -29518,7 +29518,8 @@ async function withRetry(operation, options = DEFAULT_RETRY_OPTIONS) {
                 };
             }
             let delayMs;
-            if (retryableError.retryAfter !== undefined && retryableError.retryAfter > 0) {
+            if (retryableError.retryAfter !== undefined &&
+                retryableError.retryAfter > 0) {
                 delayMs = retryableError.retryAfter * 1000; // Convert seconds to ms
             }
             else {
@@ -29543,7 +29544,7 @@ async function withRetry(operation, options = DEFAULT_RETRY_OPTIONS) {
  * @param ms - Duration in milliseconds
  */
 function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**

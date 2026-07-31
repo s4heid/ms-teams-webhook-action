@@ -210,9 +210,7 @@ export interface ActionSubmit {
  * Union of all valid notification payload types.
  */
 export type NotificationPayload =
-  | SimpleMessage
-  | AdaptiveCard
-  | Record<string, unknown>
+  SimpleMessage | AdaptiveCard | Record<string, unknown>
 
 // =============================================================================
 // Internal Types

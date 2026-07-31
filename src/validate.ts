@@ -35,17 +35,11 @@ export function validateWebhookUrl(url: string): void {
   try {
     parsed = new URL(url)
   } catch {
-    throw new ValidationError(
-      'Webhook URL must be a valid URL',
-      'webhook_url'
-    )
+    throw new ValidationError('Webhook URL must be a valid URL', 'webhook_url')
   }
 
   if (parsed.protocol !== 'https:') {
-    throw new ValidationError(
-      'Webhook URL must use HTTPS',
-      'webhook_url'
-    )
+    throw new ValidationError('Webhook URL must use HTTPS', 'webhook_url')
   }
 }
 
@@ -61,10 +55,7 @@ export function validateJsonBody(body: string | undefined): void {
   try {
     JSON.parse(body)
   } catch {
-    throw new ValidationError(
-      'Invalid body: malformed JSON',
-      'body'
-    )
+    throw new ValidationError('Invalid body: malformed JSON', 'body')
   }
 }
 
@@ -75,8 +66,7 @@ export function validateJsonBody(body: string | undefined): void {
  */
 export function validateMessageContent(inputs: Partial<ActionInputs>): void {
   const hasBody = inputs.body && inputs.body.trim() !== ''
-  const hasConvenience =
-    inputs.status || inputs.title || inputs.summary
+  const hasConvenience = inputs.status || inputs.title || inputs.summary
 
   if (!hasBody && !hasConvenience) {
     throw new ValidationError(

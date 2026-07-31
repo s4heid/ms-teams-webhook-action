@@ -59,7 +59,7 @@ describe('run', () => {
     // Note: Full integration tests require more complex mocking setup
     // These tests verify the auth and notify services are called correctly
     // The unit tests in auth.test.ts and notify.test.ts cover the core logic
-    
+
     it('should mask client_secret before any processing', async () => {
       mockPost.mockResolvedValueOnce({
         message: { statusCode: 200 },
@@ -101,7 +101,10 @@ describe('run', () => {
 
       await run()
 
-      expect(mockSetOutput).toHaveBeenCalledWith('duration_ms', expect.any(String))
+      expect(mockSetOutput).toHaveBeenCalledWith(
+        'duration_ms',
+        expect.any(String)
+      )
     })
   })
 
@@ -166,7 +169,9 @@ describe('run', () => {
 
       await run()
 
-      expect(mockSetFailed).toHaveBeenCalledWith(expect.stringContaining('HTTPS'))
+      expect(mockSetFailed).toHaveBeenCalledWith(
+        expect.stringContaining('HTTPS')
+      )
     })
 
     it('should fail when body is invalid JSON', async () => {
@@ -186,7 +191,9 @@ describe('run', () => {
 
       await run()
 
-      expect(mockSetFailed).toHaveBeenCalledWith(expect.stringContaining('JSON'))
+      expect(mockSetFailed).toHaveBeenCalledWith(
+        expect.stringContaining('JSON')
+      )
     })
   })
 })

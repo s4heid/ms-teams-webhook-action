@@ -5,7 +5,12 @@
 
 import { HttpClient } from '@actions/http-client'
 import type { HttpClientResponse } from '@actions/http-client'
-import { AuthResult, TokenResponse, TokenErrorResponse, AuthenticationError } from './types.js'
+import {
+  AuthResult,
+  TokenResponse,
+  TokenErrorResponse,
+  AuthenticationError,
+} from './types.js'
 
 /**
  * Authentication credentials for Azure AD.
@@ -20,7 +25,11 @@ export interface AuthCredentials {
  * HTTP client interface for dependency injection.
  */
 export interface IHttpClient {
-  post(url: string, data: string, headers: Record<string, string>): Promise<HttpClientResponse>
+  post(
+    url: string,
+    data: string,
+    headers: Record<string, string>
+  ): Promise<HttpClientResponse>
 }
 
 /**
@@ -153,10 +162,7 @@ function parseTokenResponse(responseBody: string): AuthResult {
  * @param statusCode - HTTP status code
  * @throws AuthenticationError with actionable message
  */
-function handleErrorResponse(
-  responseBody: string,
-  statusCode: number
-): never {
+function handleErrorResponse(responseBody: string, statusCode: number): never {
   let errorResponse: TokenErrorResponse
 
   try {

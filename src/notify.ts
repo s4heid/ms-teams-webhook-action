@@ -6,13 +6,22 @@
 import { HttpClient } from '@actions/http-client'
 import type { HttpClientResponse } from '@actions/http-client'
 import { NotifyResult, NotificationPayload } from './types.js'
-import { withRetry, isRetryableError, DEFAULT_RETRY_OPTIONS, RetryOptions } from './retry.js'
+import {
+  withRetry,
+  isRetryableError,
+  DEFAULT_RETRY_OPTIONS,
+  RetryOptions,
+} from './retry.js'
 
 /**
  * HTTP client interface for dependency injection.
  */
 export interface IHttpClient {
-  post(url: string, data: string, headers: Record<string, string>): Promise<HttpClientResponse>
+  post(
+    url: string,
+    data: string,
+    headers: Record<string, string>
+  ): Promise<HttpClientResponse>
 }
 
 /**
@@ -149,7 +158,9 @@ export async function sendNotificationWithRetry(
     }
 
     if (isRetryableError(result.statusCode)) {
-      const error: NotifyError = new Error(result.error?.message ?? 'Request failed')
+      const error: NotifyError = new Error(
+        result.error?.message ?? 'Request failed'
+      )
       error.statusCode = result.statusCode
       throw error
     }
