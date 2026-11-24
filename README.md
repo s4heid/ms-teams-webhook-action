@@ -209,9 +209,11 @@ jobs:
 
 ## Development
 
+Use the Node.js 24 version pinned in `.node-version`.
+
 ```bash
-# Install dependencies
-npm install
+# Install dependencies from the lockfile
+npm ci
 
 # Run tests
 npm test
